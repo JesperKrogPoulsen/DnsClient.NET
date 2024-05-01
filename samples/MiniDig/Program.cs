@@ -21,10 +21,10 @@ namespace DigApp
 
             try
             {
-                var perApp = app.Command("perf", (perfApp) => _ = new PerfCommand(perfApp, args));
-                perApp.UnrecognizedArgumentHandling = UnrecognizedArgumentHandling.Throw;
-                var randomApp = app.Command("random", (randApp) => _ = new RandomCommand(randApp, args));
-                randomApp.UnrecognizedArgumentHandling = UnrecognizedArgumentHandling.Throw;
+                //var perApp = app.Command("perf", (perfApp) => _ = new PerfCommand(perfApp, args));
+                //perApp.UnrecognizedArgumentHandling = UnrecognizedArgumentHandling.Throw;
+                //var randomApp = app.Command("random", (randApp) => _ = new RandomCommand(randApp, args));
+                //randomApp.UnrecognizedArgumentHandling = UnrecognizedArgumentHandling.Throw;
 
                 // Command must initialize so that it adds the configuration.
                 _ = new DigCommand(app, args);
