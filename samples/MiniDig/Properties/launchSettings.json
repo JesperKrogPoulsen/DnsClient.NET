@@ -2,7 +2,7 @@
   "profiles": {
     "MiniDig": {
       "commandName": "Project",
-      "commandLineArgs": "-s localhost mcnet.com txt"
+      "commandLineArgs": "-s 172.17.53.31 valid-cds.dk cds"
     }
   }
 }
