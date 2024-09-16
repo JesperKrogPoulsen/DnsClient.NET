@@ -4,6 +4,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 
 namespace DnsClient.Protocol
@@ -88,12 +89,18 @@ namespace DnsClient.Protocol
             Selector = (TlsaSelector)selector;
             MatchingType = (TlsaMatchingType)matchingType;
             CertificateAssociationData = certificateAssociationData ?? throw new ArgumentNullException(nameof(certificateAssociationData));
-            CertificateAssociationDataAsString = string.Join(string.Empty, certificateAssociationData.Select(b => b.ToString("X2")));
+            CertificateAssociationDataAsString = string.Join(string.Empty, certificateAssociationData.Select(b => b.ToString("X2", CultureInfo.InvariantCulture)));
         }
 
         private protected override string RecordToString()
         {
-            return string.Format("{0} {1} {2} {3}", CertificateUsage, Selector, MatchingType, CertificateAssociationDataAsString);
+            return string.Format(
+                CultureInfo.InvariantCulture,
+                "{0} {1} {2} {3}",
+                CertificateUsage,
+                Selector,
+                MatchingType,
+                CertificateAssociationDataAsString);
         }
     }
 

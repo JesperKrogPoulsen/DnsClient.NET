@@ -4,6 +4,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using DnsClient.Internal;
 
@@ -117,7 +118,7 @@ namespace DnsClient.Protocol
             Salt = salt ?? throw new ArgumentNullException(nameof(salt));
             TypeBitMapsRaw = bitmap ?? throw new ArgumentNullException(nameof(bitmap));
 
-            SaltAsString = Salt.Length == 0 ? "-" : string.Join(string.Empty, Salt.Select(b => b.ToString("X2")));
+            SaltAsString = Salt.Length == 0 ? "-" : string.Join(string.Empty, Salt.Select(b => b.ToString("X2", CultureInfo.InvariantCulture)));
             NextOwnersName = nextOwnersName ?? throw new ArgumentNullException(nameof(nextOwnersName));
 
             try
@@ -135,6 +136,7 @@ namespace DnsClient.Protocol
         private protected override string RecordToString()
         {
             return string.Format(
+                CultureInfo.InvariantCulture,
                 "{0} {1} {2} {3} {4} {5}",
                 HashAlgorithm,
                 Flags,
